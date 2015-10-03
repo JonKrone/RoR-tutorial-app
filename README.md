@@ -1,6 +1,3 @@
-<code><span style="display:block;line-height:8px; font-size: 8px; font-weight:bold;white-space:pre;font-family: monospace;color: black; background: white;">                                                                                                   
-                                                                                                   
-                                                                  @@@@*                            
                                                                 .@@@@@@@                           
                                                                 .@@@@@@@@@                         
                                                                %@@@@@@@@@@@@@@@@@@                 
@@ -39,14 +36,6 @@
       %@@@@@@@@.         @@@@@@@&          @@@@@@@@     @@@@@@@@.                                  
       @@@@@@@@@@@@*     %@@@@@@@@@@@*      @@@@@@@     .@@@@@@@@@@@&                               
       @@@@@@@@@@@@@@.    @@@@@@@@@@@@@@    #@@@.        @@@@@@@@@@@@@@@                            
-                                                                                                   
-                                                                                                   
-                                                                                                   
-                                                                                                   
-                                                                                                   
-                                                                                                   
-                                                                                                   
-</span></code>
 
 We're gonna hibernate with this code mulling through our multi-stomach digestive
 system, to then be eaten again.
