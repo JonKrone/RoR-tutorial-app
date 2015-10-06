@@ -1,9 +1,12 @@
-<% provide(:title, "Home") %>
-
-<h1>StaticPages#home</h1>
-  <p>
-    Find me in app/views/static_pages/home.html.erb
-    <p>Paragraph in a paragraph
-      <p><em>in a paragraph?</em></p>
-    </p>
-</p>
+<div class="center jumbotron">
+  
+  <h1>Welcome to OOLWs</h1>
+  <h2>
+    You've found our homepage, now go find your world and log in.
+  </h2>
+  <%= link_to "Find your world!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+<div class="center">
+<%= link_to image_tag("Web.png", alt: "OOLWs"),
+            'https://rails-tutorial-jonkrone.c9.io/static_pages/about' %>
+</div>
