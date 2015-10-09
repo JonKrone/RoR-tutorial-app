@@ -1,3 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# See Listing 6.29 for previous contents
 
-#empty until chapater 8. See Listing 6.29 for previous contents
+cowboy:
+  name: Rick Roger
+  email: rick@roger.com
+  password_digest: <%= User.digest('password') %>
+  
