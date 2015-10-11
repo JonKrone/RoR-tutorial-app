@@ -1,0 +1,7 @@
+Hi <%= @user.name %>,
+
+Welcome to your own little world. All you need to do is click the link below.
+
+See you later!
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

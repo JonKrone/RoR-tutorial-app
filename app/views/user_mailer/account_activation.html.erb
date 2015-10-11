@@ -1,0 +1,9 @@
+<h1>Our Own Little Worlds</h1>
+<h3>We're ecstatic to have you join us</h3>
+<p>
+Welcome. All you need do is click the link below.
+
+See you later!
+</p>
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

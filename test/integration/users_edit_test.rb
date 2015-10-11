@@ -19,6 +19,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_path(@user)
+    assert_nil session[:forwarding_url]
     name = "Fancy Pants"
     email = "fancy@pants.me"
     patch user_path(@user), user: { name:  name,
