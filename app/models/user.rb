@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
 
@@ -33,15 +33,34 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
   
-  # Activates an account
+  # Activates an account.
   def activate
     update_attribute(:activated,    true)
     update_attribute(:activated_at, Time.zone.now)
   end
-  
-  # Sends an activation email
+
+  # Sends an activation email.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+  
+  # Create a password reset digest.
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+  
+  # Send a password reset email.
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+  
+  # Returns whether our password reset token has expired or not.
+  # Useful to read '<' as "earlier than" where our code can be read as:
+  # "Password reset sent earlier than two hours ago"
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
   
   private 
