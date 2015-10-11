@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   #
   def show
     @user = User.find(params[:id])
+    unless @user.activated?
+      redirect_to root_url
+      flash[:warning] = "You must be logged in to view profiles."
+      return
+    end
   end
 
   # Creates a new User.
@@ -27,7 +32,7 @@ class UsersController < ApplicationController
   
   # Called upon a request for all users.
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
   
   # Called upon a request to edit the page.

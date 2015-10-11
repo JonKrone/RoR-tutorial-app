@@ -5,6 +5,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:cowboy)
     @non_admin = users(:braile)
+    @unactivated_user = users(:unactivated)
   end
   
   test "index as admin including pagination and delete links" do
@@ -29,4 +30,16 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
     get users_path
     assert_select 'a', text: 'delete', count: 0
   end
+  
+  test "unactivated users do not display" do
+    get users_path
+    assert_select 'a[href=?]', user_path(@unactivated_user), count: 0
+  end
+  
+  test "should not allow the viewing of unactivated users" do
+    get user_path(@unactivated_user)
+    assert_redirected_to root_url
+    assert_not flash.empty?
+  end
+  
 end
