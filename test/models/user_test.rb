@@ -83,5 +83,41 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+  
+  test "should follow and unfollow a user" do
+    cowboy = users(:cowboy)
+    braile = users(:braile)
+    assert_not braile.following?(cowboy) # check we are not following
+    
+    # Braile follows Cowboy
+    braile.follow(cowboy)
+    assert braile.following? cowboy
+    assert cowboy.followers.include? braile
+    
+    # Cowboy unfollows Braile
+    cowboy.unfollow braile
+    assert_not cowboy.following? braile
+  end
+  
+  test "feed should have the right posts" do
+    cowboy = users(:cowboy)
+    braile = users(:braile)
+    lana   = users(:lana)
+    
+    # Posts from followed user
+    lana.microposts.each do |post_following|
+      assert cowboy.feed.include?(post_following)
+    end
+    
+    # Posts from self
+    cowboy.microposts.each do |post_self|
+      assert cowboy.feed.include?(post_self)
+    end
+    
+    # Posts from unfollowed user
+    cowboy.microposts.each do |post_unfollowed|
+      assert_not braile.feed.include?(post_unfollowed)
+    end
+  end
 
 end

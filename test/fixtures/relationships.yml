@@ -1,0 +1,15 @@
+one:
+  follower: cowboy
+  followed: braile
+  
+two:
+  follower: cowboy
+  followed: lana
+  
+three:
+  follower: lana
+  followed: cowboy
+  
+four:
+  follower: lana
+  followed: braile
